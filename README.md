@@ -17,11 +17,11 @@ Specific questions:
 
 ## Data
 
-- **Source:** CAS Loss Reserving Database (NAIC Schedule P), newer release: accident years 1998–2007, valued 12/31/2007, with actual development through 2016. [CAS page](https://www.casact.org/publications-research/research/research-resources/loss-reserving-data-pulled-naic-schedule-p)
+- **Source:** CAS Loss Reserving Database (NAIC Schedule P), newer release: accident years 1998–2007, valued 12/31/2007, with actual development through 2016. [CAS page](https://www.casact.org/publications-research/research/research-resources/l.oss-reserving-data-pulled-naic-schedule-p) Downloaded: 2026/10/29
 - **Lines:** Private passenger auto (PPA) and workers' compensation (WC).
 - **Column mapping:**
   - Paid = `CumPaidLoss`
-  - Reported (paid + case) = `IncurLoss − BulkLoss`
+  - Reported (paid + case) = `IncurredLosses − BulkLoss`
   - Premium = `EarnedPremNet`
 - **Cleaning rules:** TODO (Phase 1). This will be a table of each rule, the reason for it, and the company count remaining after it.
 
@@ -29,9 +29,7 @@ Specific questions:
 
 - **Target:** cumulative losses at 120 months of development (lag 10). The data contains this value for every accident year, so no tail factor is needed. Development factors run to 120 months and stop.
 - **Caveat:** for WC, 120 months is not ultimate. The paid-to-reported ratio at lag 10 shows how much remains open.
-- **Target per method:** TODO. Choose one and write down why:
-  - (a) Matching basis: paid methods are graded against paid at 120 and reported methods against reported at 120, or
-  - (b) Common target: every method is graded against the same quantity.
+- **Target per method:** Matching basis: paid methods are graded against paid at 120 and reported methods against reported at 120. Expected claims and BF are each run twice: once using paid losses, paid development factors and a paid expected loss ratio, and once using the reported versions of all three. Each run is graded against the matching target. Why: stopping at 120 months (no tail factors) leaves case reserves open at lag 10, so paid and reported at 120 differ. A common target would count that gap as error for one chain ladder, and the gap varies by line and maturity. Open case at 120 is reported separately by line.
 
 ## Backtest design
 
