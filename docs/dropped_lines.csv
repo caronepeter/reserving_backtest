@@ -1,0 +1,107 @@
+line,GRCODE,GRNAME,rule
+PPA,6807,Amerisafe Grp,Rule 1: zero paid
+PPA,9466,Lumber Ins Cos,Rule 1: zero paid
+PPA,11460,Homestead Ins Co,Rule 1: zero paid
+PPA,13285,Allegheny Cas Co,Rule 1: zero paid
+PPA,14281,Inland Mut Ins Co,Rule 1: zero paid
+PPA,39381,Adriatic Ins Co,Rule 1: zero paid
+PPA,40223,Baltica-Skandinavia Rein Co Of Amer,Rule 1: zero paid
+PPA,43354,San Antonio Reins Co,Rule 1: zero paid
+PPA,1252,Penn Miller Grp,Rule 2: net premium <= 0
+PPA,3131,Aegis Grp,Rule 2: net premium <= 0
+PPA,3492,Florists Mut Ins Grp,Rule 2: net premium <= 0
+PPA,7480,Star Ins Grp,Rule 2: net premium <= 0
+PPA,7676,Pennsylvania Mfg Asn Ins Co,Rule 2: net premium <= 0
+PPA,10019,Overseas Partners Us Reins Co,Rule 2: net premium <= 0
+PPA,10790,American Vehicle Ins Co,Rule 2: net premium <= 0
+PPA,11150,First Amer Ins Co,Rule 2: net premium <= 0
+PPA,14885,Northwest Gf Mut Ins Co,Rule 2: net premium <= 0
+PPA,15393,Wisconsin American Mut Ins Co,Rule 2: net premium <= 0
+PPA,17299,Mennonite Mut Ins Co,Rule 2: net premium <= 0
+PPA,18538,Bancinsure Inc,Rule 2: net premium <= 0
+PPA,19020,Bell United Ins Co,Rule 2: net premium <= 0
+PPA,21172,Vanliner Ins Co,Rule 2: net premium <= 0
+PPA,22390,Wellington Ins Co,Rule 2: net premium <= 0
+PPA,23663,National American Ins Co,Rule 2: net premium <= 0
+PPA,29378,Old American Cty Mut Fire Ins Co,Rule 2: net premium <= 0
+PPA,32301,Nichido Fire & Marine Ins Co Ltd,Rule 2: net premium <= 0
+PPA,34525,First American Specilaty Ins Co,Rule 2: net premium <= 0
+PPA,38997,Nissan Fire & Marine Ins Co Us Br,Rule 2: net premium <= 0
+PPA,42552,Nova Cas Co,Rule 2: net premium <= 0
+PPA,42846,Atlantic Cas Ins Co,Rule 2: net premium <= 0
+PPA,10783,Cornerstone Natl Ins Co,Rule 4: negative case > 10% of paid
+PPA,17884,German Mut Ins Co,Rule 4: negative case > 10% of paid
+PPA,18380,Pacific Ind Ins Co,Rule 4: negative case > 10% of paid
+PPA,19780,Springfield Fire & Cas Co,Rule 4: negative case > 10% of paid
+WC,460,Buckeye Ins Grp,Rule 1: zero paid
+WC,655,FM Global,Rule 1: zero paid
+WC,711,Patrons Grp,Rule 1: zero paid
+WC,1236,Shelter Ins Cos Grp,Rule 1: zero paid
+WC,2143,Farmers Alliance Mut & Affiliates,Rule 1: zero paid
+WC,3000,Horace Mann Grp,Rule 1: zero paid
+WC,4839,FL Farm Bureau Grp,Rule 1: zero paid
+WC,7714,Keystone Ins Grp,Rule 1: zero paid
+WC,8168,Commerce Grp Inc,Rule 1: zero paid
+WC,10022,Agway Ins Co,Rule 1: zero paid
+WC,10561,Catholic Relief Ins Co Of Amer,Rule 1: zero paid
+WC,10657,First Mercury Ins Co,Rule 1: zero paid
+WC,10709,Goldstreet Ins Co,Rule 1: zero paid
+WC,11231,Generali Us Branch,Rule 1: zero paid
+WC,13587,Chicago Mut Ins Co,Rule 1: zero paid
+WC,13641,Colorado Farm Bureau Mut Ins Co,Rule 1: zero paid
+WC,14044,Goodville Mut Cas Co,Rule 1: zero paid
+WC,15024,Preferred Mut Ins Co,Rule 1: zero paid
+WC,15792,Underwriters At Lloyds London,Rule 1: zero paid
+WC,20451,Midstates Rein Corp,Rule 1: zero paid
+WC,23876,Mapfre Reins Corp,Rule 1: zero paid
+WC,27065,Rockford Mut Ins Co,Rule 1: zero paid
+WC,31658,Zurich Ins (Guam) Inc,Rule 1: zero paid
+WC,33111,MHA Ins Co,Rule 1: zero paid
+WC,35904,Health Care Ind Inc,Rule 1: zero paid
+WC,38644,Omega Ins Co,Rule 1: zero paid
+WC,86,Allstate Ins Co Grp,Rule 2: net premium <= 0
+WC,337,California Cas Grp,Rule 2: net premium <= 0
+WC,1090,Kentucky Farm Bureau Mut Ins Grp,Rule 2: net premium <= 0
+WC,3034,Preferred Risk Mut Grp,Rule 2: net premium <= 0
+WC,8427,Farm Bureau Grp,Rule 2: net premium <= 0
+WC,8559,Millers Mut Ins Assoc,Rule 2: net premium <= 0
+WC,9466,Lumber Ins Cos,Rule 2: net premium <= 0
+WC,10011,Mada Ins Exchange,Rule 2: net premium <= 0
+WC,10074,Martingale Natl Ins Co,Rule 2: net premium <= 0
+WC,10191,MO Employers Mut Ins Co,Rule 2: net premium <= 0
+WC,10385,FFVA Mut Ins Co,Rule 2: net premium <= 0
+WC,10520,Care West Ins Co,Rule 2: net premium <= 0
+WC,10659,Diamond Ins Co,Rule 2: net premium <= 0
+WC,10699,Florida Hospitality Mut Ins Co,Rule 2: net premium <= 0
+WC,10781,Hawaii Employers Mut Ins Co,Rule 2: net premium <= 0
+WC,10800,NHC Ins Co,Rule 2: net premium <= 0
+WC,10859,First Nonprofit Mut Ins Co,Rule 2: net premium <= 0
+WC,11347,State Fund Mut Ins Co,Rule 2: net premium <= 0
+WC,11460,Homestead Ins Co,Rule 2: net premium <= 0
+WC,11703,Lackawanna Cas Co,Rule 2: net premium <= 0
+WC,12297,Petroleum Cas Co,Rule 2: net premium <= 0
+WC,13943,Fitchburg Mut Ins Co,Rule 2: net premium <= 0
+WC,15334,Utilities Mut Ins Co,Rule 2: net premium <= 0
+WC,15393,Wisconsin American Mut Ins Co,Rule 2: net premium <= 0
+WC,15911,American Mining Ins Co Inc,Rule 2: net premium <= 0
+WC,18791,Virginia Mut Ins Co,Rule 2: net premium <= 0
+WC,22635,Discovery Ins Co,Rule 2: net premium <= 0
+WC,22900,Louisiana Pest Control Ins Co,Rule 2: net premium <= 0
+WC,23140,Associated Industries Ins Co,Rule 2: net premium <= 0
+WC,24017,Beacon Mut Ins Co,Rule 2: net premium <= 0
+WC,27529,Laundry Owners Mut Liab Ins Asn,Rule 2: net premium <= 0
+WC,27626,Firstcomp Ins Co,Rule 2: net premium <= 0
+WC,28258,Continental Natl Ind Co,Rule 2: net premium <= 0
+WC,32005,Employers Security Ins Co,Rule 2: net premium <= 0
+WC,32875,British Amer Ins Co,Rule 2: net premium <= 0
+WC,34576,Workers Comp Exch,Rule 2: net premium <= 0
+WC,35009,Financial Cas & Surety Inc,Rule 2: net premium <= 0
+WC,35408,Sirius Amer Ins Co,Rule 2: net premium <= 0
+WC,37370,Associated Loggers Exch,Rule 2: net premium <= 0
+WC,38300,Samsung Fire & Marine Ins Co Ltd,Rule 2: net premium <= 0
+WC,38687,Alaska Timber Ins Exchange,Rule 2: net premium <= 0
+WC,38997,Nissan Fire & Marine Ins Co Us Br,Rule 2: net premium <= 0
+WC,42439,Toa-Re Ins Co Of Amer,Rule 2: net premium <= 0
+WC,3240,NC Farm Bureau Ins Grp,Rule 4: negative case > 10% of paid
+WC,31780,Maple Valley Mut Ins Co,Rule 4: negative case > 10% of paid
+WC,41394,Benchmark Ins Co,Rule 4: negative case > 10% of paid

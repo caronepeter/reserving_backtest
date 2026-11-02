@@ -1,0 +1,9 @@
+line,step,dropped,lines_left,graded_ays
+PPA,Start,0,143,1182
+PPA,Rule 1: zero paid,8,135,1125
+PPA,Rule 2: net premium <= 0,22,113,951
+PPA,Rule 4: negative case > 10% of paid,4,109,915
+WC,Start,0,132,1078
+WC,Rule 1: zero paid,26,106,868
+WC,Rule 2: net premium <= 0,43,63,501
+WC,Rule 4: negative case > 10% of paid,3,60,474
