@@ -1,6 +1,6 @@
 # Reserving Backtest: How Accurate Are Basic Reserving Methods on Real Insurers?
 
-> Status: Phase 1 (data) complete; cleaning rules applied. Results not yet produced. The question, target and scoring rules below were set **before** any estimates were made, so the design can't be tuned to the results.
+> Status: Phase 1 (data) and Phase 2 (one company by hand) complete. Phase 3 (all companies) next. The question, target and scoring rules below were set **before** any estimates were made, so the design can't be tuned to the results.
 
 ## Research question
 
@@ -44,6 +44,20 @@ A graded AY is an accident year 1999–2007 that is present (AY 1998's reserve i
 - *Reinsurance:* Schedule P doesn't record treaty type, so changes in excess-of-loss reinsurance are a possible driver of chain ladder errors that can't be separated out.
 - *Groups:* group membership can change through mergers between 2007 and 2016.
 
+## Phase 2: one company by hand (WC, GRCODE 23663)
+
+Before scaling up, every method was built by hand in Excel on one randomly picked mid-size WC company ([excel/wc_23663.xlsx](excel/wc_23663.xlsx)), rebuilt in Python (`src/methods.py`, checked against Friedland ch. 7 Exhibit I in `tests/`) and reconciled to the workbook at every stage, both bases (largest gap $0.07; `notebooks/03_one_company.ipynb`). A written prediction ([notes/phase2_prediction.md](notes/phase2_prediction.md)) was committed with the estimates (tag `phase2-freeze`) before the answer key was opened (`notebooks/04_phase2_reveal.ipynb`).
+
+| Basis | Closest method | Error, % of reserve | Actual unpaid, AYs 1999–2007 ($000) |
+|---|---|---|---|
+| Paid | Chain ladder | −4.4% | 13,659 |
+| Reported | Chain ladder | +11.5% | 14,436 |
+
+- **Prediction:** 3 of 7 calls hit. The diagnostics were read correctly (the AY 1998 loss ratio overstated recent AYs; case reserves strengthened), but I picked BF to hedge against AY 1998-style late emergence, which didn't happen.
+- **Main driver:** AYs 2002–2007 finished at 38–58% paid loss ratios, well below the expected loss ratios (company AY 1998: 84.1%; industry: 64.2%). BF and expected claims lean on those ratios, so they overstated; chain ladder used each AY's own losses.
+- **Judgment vs averages:** my factor selections beat all 6 averages on the reported basis (+11.5% vs +25% to +60%). On the paid basis every averaging method landed within ±10%.
+- **Changes for Phase 3:** accident-year errors are shown as % of earned premium, because % of reserve explodes on mature AYs (AY 2000's actual unpaid was $12K). The loss ratio options stay as set; changing them after one result would be hindsight. Question 5 tests the loss ratio effect across every line.
+
 ## Target definition
 
 - **Target:** cumulative losses at 120 months of development (lag 10). The data contains this value for every accident year, so no tail factor is needed. Development factors run to 120 months and stop.
@@ -61,7 +75,7 @@ A graded AY is an accident year 1999–2007 that is present (AY 1998's reserve i
 
 ## Scope
 
-**In scope:** paid/reported chain ladder, expected claims, BF; 5–7 averaging methods (Friedland ch. 7); 2–3 expected loss ratio options; PPA and WC; 120-month target.
+**In scope:** paid/reported chain ladder, expected claims, BF; 6 averaging methods (simple and volume-weighted × all years, latest 5, latest 3; Friedland ch. 7); 2 expected loss ratio options (company AY 1998 at 120 months; premium-weighted industry); PPA and WC; 120-month target.
 
 **Out of scope:** tail factors, Mack/bootstrap, Berquist-Sherman, frequency-severity methods, case outstanding development. The data has no claim counts, so a shift in the paid-to-reported ratio can't be attributed to faster settlement vs. weakening case reserves.
 
@@ -71,9 +85,13 @@ A graded AY is an accident year 1999–2007 that is present (AY 1998's reserve i
 data/raw/        CAS download, unmodified
 data/clean/      output of src/clean.py (not committed; rebuild by running it)
 docs/            cleaning rules, cleaning counts, dropped lines, data dictionary
-src/             clean.py (cleaning rules); reserving methods (self-written module)
-notebooks/       01_data_checks (probes behind each rule), 02_clean (applies the rules)
-tests/           reproductions of Friedland exhibits
+data/hidden/     Phase 2 answer key (not committed)
+excel/           Phase 2 hand-built exhibits, WC GRCODE 23663
+notes/           Phase 2 prediction, written before the reveal
+src/             clean.py (cleaning rules); methods.py (triangles, factors, averages, CL, expected claims, BF, grading)
+notebooks/       01_data_checks (probes behind each rule), 02_clean (applies the rules),
+                 03_one_company (pick, export, Python-to-Excel reconciliation), 04_phase2_reveal (grading)
+tests/           test_methods.py: Friedland ch. 7 Exhibit I (factors, averages, CDFs, chain ladder)
 ```
 
 ## References
