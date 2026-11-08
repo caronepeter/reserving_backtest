@@ -58,6 +58,25 @@ Before scaling up, every method was built by hand in Excel on one randomly picke
 - **Judgment vs averages:** my factor selections beat all 6 averages on the reported basis (+11.5% vs +25% to +60%). On the paid basis every averaging method landed within ±10%.
 - **Changes for Phase 3:** accident-year errors are shown as % of earned premium, because % of reserve explodes on mature AYs (AY 2000's actual unpaid was $12K). The loss ratio options stay as set; changing them after one result would be hindsight. Question 5 tests the loss ratio effect across every line.
 
+## Phase 3: every method on every clean line
+
+All 40 combinations per accident year were run on all 169 clean lines (PPA 109, WC 60; 1,558 company-AYs): chain ladder under 6 averages × 2 bases, expected claims with 2 loss ratios × 2 bases, and BF with 6 averages × 2 loss ratios × 2 bases. `src/backtest.py` runs `src/methods.py` (unchanged from Phase 2) on every line on known cells only, with an assertion that no cell after 2007 enters. The estimates were frozen (tag `phase3-freeze`; SHA-256 hashes in [notes/phase3_freeze.md](notes/phase3_freeze.md)) before `notebooks/05_phase3_grade.ipynb` read any later development. Factors are mechanical averages only; no judgment.
+
+- **Checks before the freeze:** GRCODE 23663 run through the batch reproduces all 16 Phase 2 totals (chain ladder under each average, expected claims with each loss ratio, both bases); BF = Z × CL + (1 − Z) × EC with Z = 1/CDF holds on every checkable BF row, which catches misaligned CDF, premium or loss ratio joins; `tests/test_backtest.py` covers the zero-denominator rule, "latest n" with a gap and incomplete lines.
+- **Rules set before grading:** an AY whose starting cumulative is 0 is left out of that age's average, and a factor with no AY left is 1.0. Four WC lines have AY 1998 losses of 0, so their company loss ratio is 0; they are kept and flagged. One WC line (26956) has a 0 reported CDF from a $1K drop at lag 8 → 9, so its reported BF is undefined; it is left out of method comparisons (common sample: PPA 109, WC 59 lines).
+- **Results file:** [docs/phase3_summary.csv](docs/phase3_summary.csv) has n, median, IQR and median absolute error on both scales for every line of business × basis × method × average × loss ratio; [docs/phase3_open_case_by_line.csv](docs/phase3_open_case_by_line.csv) has case still open at 120 by line.
+
+Headline comparison, common sample, AYs 1999–2007, chain ladder and BF on volume-weighted all-years factors. Median error as % of reserve on line totals (median absolute error in brackets); lines whose actual unpaid total is ≤ 0 have no % of reserve (PPA 8, WC 3 paid / 1 reported).
+
+| Line, basis | Chain ladder | BF, company LR | BF, industry LR | EC, company LR | EC, industry LR |
+|---|---|---|---|---|---|
+| PPA paid | +6.9% (18.8%) | +7.8% (22.8%) | +14.8% (22.3%) | −18.8% (103.4%) | +42.4% (95.7%) |
+| PPA reported | +3.2% (14.7%) | +4.5% (12.8%) | +3.9% (15.9%) | −16.9% (102.9%) | +31.7% (94.1%) |
+| WC paid | +4.5% (28.5%) | +0.7% (41.9%) | +19.9% (32.5%) | −35.3% (133.6%) | +26.5% (78.5%) |
+| WC reported | +5.0% (27.8%) | +2.7% (26.2%) | +11.7% (29.6%) | −40.9% (119.8%) | +27.1% (87.7%) |
+
+Findings, error drivers and intervals are in Phase 4.
+
 ## Target definition
 
 - **Target:** cumulative losses at 120 months of development (lag 10). The data contains this value for every accident year, so no tail factor is needed. Development factors run to 120 months and stop.
@@ -84,14 +103,20 @@ Before scaling up, every method was built by hand in Excel on one randomly picke
 ```
 data/raw/        CAS download, unmodified
 data/clean/      output of src/clean.py (not committed; rebuild by running it)
-docs/            cleaning rules, cleaning counts, dropped lines, data dictionary
+docs/            cleaning rules, cleaning counts, dropped lines, data dictionary;
+                 Phase 3 summary results and open case at 120 by line
 data/hidden/     Phase 2 answer key (not committed)
+results/         Phase 3 estimates and graded tables (not committed; rebuild with src/backtest.py
+                 and notebooks/05_phase3_grade)
 excel/           Phase 2 hand-built exhibits, WC GRCODE 23663
-notes/           Phase 2 prediction, written before the reveal
-src/             clean.py (cleaning rules); methods.py (triangles, factors, averages, CL, expected claims, BF, grading)
+notes/           Phase 2 prediction, written before the reveal; Phase 3 freeze hashes
+src/             clean.py (cleaning rules); methods.py (triangles, factors, averages, CL, expected claims, BF, grading);
+                 backtest.py (Phase 3: loss ratios, all lines x 40 combinations, checks)
 notebooks/       01_data_checks (probes behind each rule), 02_clean (applies the rules),
-                 03_one_company (pick, export, Python-to-Excel reconciliation), 04_phase2_reveal (grading)
-tests/           test_methods.py: Friedland ch. 7 Exhibit I (factors, averages, CDFs, chain ladder)
+                 03_one_company (pick, export, Python-to-Excel reconciliation), 04_phase2_reveal (grading),
+                 05_phase3_grade (grades every estimate, summary table)
+tests/           test_methods.py: Friedland ch. 7 Exhibit I (factors, averages, CDFs, chain ladder);
+                 test_backtest.py: Phase 3 batch (23663 regression, zero denominators, latest n, incomplete lines)
 ```
 
 ## References
