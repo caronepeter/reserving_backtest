@@ -188,6 +188,50 @@ def check_estimates(est, clean):
     return n_company_ays
 
 
+# --- Step 5: run checks on known data ------------------------------------------
+
+def check_run(est):
+    """Step 5 checks. Returns tables to read; raises on a failed identity.
+
+    - AY 1998 is at 120 months, so its CDF is 1 and CL estimate = latest:
+      paid-basis unpaid = 0; reported-basis unpaid = case still open at 120.
+    - BF identity: BF = latest + EC x (1 - 1/CDF) and CL = latest x CDF, so
+      BF = Z x CL + (1 - Z) x EC with Z = 1/CDF. Checked on every BF row by
+      joining it to the CL row (same basis, average, AY) and the EC row (same
+      basis, ELR, AY): a misaligned CDF, premium or ELR join breaks it.
+      Undefined where CDF = 0 (Z infinite); those rows are counted instead.
+    """
+    keys = ["lob", "GRCODE", "basis", "AccidentYear"]
+    ay98 = est[(est.method == "cl") & (est.AccidentYear == 1998)]
+    assert (ay98.cdf == 1).all()
+    assert (ay98[ay98.basis == "paid"].unpaid.abs() < 1e-9).all(), "AY 1998 paid CL unpaid != 0"
+    rep98 = ay98[ay98.basis == "reported"].drop_duplicates(["lob", "GRCODE"])
+    open_case_98 = rep98.groupby("lob").unpaid.describe()
+
+    cl = est[est.method == "cl"][keys + ["average", "est"]].rename(columns={"est": "cl"})
+    ec = est[est.method == "ec"][keys + ["elr", "est"]].rename(columns={"est": "ec"})
+    bf = (est[est.method == "bf"][keys + ["average", "elr", "cdf", "est"]]
+          .merge(cl, on=keys + ["average"], validate="m:1")
+          .merge(ec, on=keys + ["elr"], validate="m:1"))
+    assert len(bf) == (est.method == "bf").sum(), "BF rows lost in the join"
+    ok = (bf.cdf != 0) & np.isfinite(bf.cdf)
+    z = 1 / bf.cdf[ok]
+    implied = z * bf.cl[ok] + (1 - z) * bf.ec[ok]
+    gap = (bf.est[ok] - implied).abs()
+    assert (gap <= 1e-6 * np.maximum(1, bf.est[ok].abs())).all(), f"BF identity max gap {gap.max()}"
+
+    bad = est.est.isna() | np.isinf(est.est)
+    nan_inf = (est.assign(bad=bad).groupby(["lob", "basis", "method"])
+               .agg(rows=("bad", "size"), nan_inf=("bad", "sum"),
+                    lines=("GRCODE", lambda s: s[bad.loc[s.index]].nunique())))
+    common = (est.assign(bad=bad).groupby(["lob", "GRCODE"]).bad.any()
+              .groupby("lob").agg(lines="size", dropped="sum"))
+    common["common_sample"] = common.lines - common.dropped
+    return {"bf_rows_checked": int(ok.sum()), "bf_rows_cdf_zero": int((~ok).sum()),
+            "bf_max_gap": float(gap.max()), "open_case_ay1998": open_case_98,
+            "nan_inf": nan_inf, "common_sample": common}
+
+
 def build():
     """Steps 2-3: ELRs, estimates, line attributes and D1 counts."""
     clean = load_clean()
@@ -227,3 +271,11 @@ if __name__ == "__main__":
     print(fb.groupby(["lob", "basis", "average"]).agg(factors=("fallback_factors", "sum"),
                                                       lines=("GRCODE", "nunique"))
           if len(fb) else "none")
+
+    r = check_run(est)
+    print(f"\nStep 5 checks passed. BF identity on {r['bf_rows_checked']:,} rows "
+          f"(max gap {r['bf_max_gap']:.2e}); {r['bf_rows_cdf_zero']} rows with CDF = 0 not checkable")
+    print("\nAY 1998 reported CL unpaid = case open at 120 ($000), by lob:\n",
+          r["open_case_ay1998"].round(1))
+    print("\nNaN or infinite estimates by lob x basis x method:\n", r["nan_inf"])
+    print("\nCommon sample (D4):\n", r["common_sample"])
