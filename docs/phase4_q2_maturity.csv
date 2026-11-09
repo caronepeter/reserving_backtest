@@ -1,0 +1,181 @@
+lob,basis,combo,age,median,size
+PPA,paid,BF company,12,0.049145,95
+PPA,paid,BF company,24,0.029571,97
+PPA,paid,BF company,36,0.020092,97
+PPA,paid,BF company,48,0.010715,101
+PPA,paid,BF company,60,0.008950,101
+PPA,paid,BF company,72,0.003395,102
+PPA,paid,BF company,84,0.002493,106
+PPA,paid,BF company,96,0.000731,107
+PPA,paid,BF company,108,0.000123,109
+PPA,paid,BF industry,12,0.055633,95
+PPA,paid,BF industry,24,0.045469,97
+PPA,paid,BF industry,36,0.025663,97
+PPA,paid,BF industry,48,0.011624,101
+PPA,paid,BF industry,60,0.009525,101
+PPA,paid,BF industry,72,0.004614,102
+PPA,paid,BF industry,84,0.002519,106
+PPA,paid,BF industry,96,0.000768,107
+PPA,paid,BF industry,108,0.000140,109
+PPA,paid,CL,12,0.056811,95
+PPA,paid,CL,24,0.024614,97
+PPA,paid,CL,36,0.019070,97
+PPA,paid,CL,48,0.010444,101
+PPA,paid,CL,60,0.008749,101
+PPA,paid,CL,72,0.003630,102
+PPA,paid,CL,84,0.002264,106
+PPA,paid,CL,96,0.000828,107
+PPA,paid,CL,108,0.000129,109
+PPA,paid,EC company,12,0.107897,95
+PPA,paid,EC company,24,0.105886,97
+PPA,paid,EC company,36,0.084156,97
+PPA,paid,EC company,48,0.110223,101
+PPA,paid,EC company,60,0.097391,101
+PPA,paid,EC company,72,0.099385,102
+PPA,paid,EC company,84,0.105944,106
+PPA,paid,EC company,96,0.109064,107
+PPA,paid,EC company,108,0.077245,109
+PPA,paid,EC industry,12,0.080914,95
+PPA,paid,EC industry,24,0.111641,97
+PPA,paid,EC industry,36,0.103531,97
+PPA,paid,EC industry,48,0.099936,101
+PPA,paid,EC industry,60,0.079724,101
+PPA,paid,EC industry,72,0.106205,102
+PPA,paid,EC industry,84,0.122520,106
+PPA,paid,EC industry,96,0.123954,107
+PPA,paid,EC industry,108,0.091960,109
+PPA,reported,BF company,12,0.044291,95
+PPA,reported,BF company,24,0.026069,97
+PPA,reported,BF company,36,0.016743,97
+PPA,reported,BF company,48,0.009761,101
+PPA,reported,BF company,60,0.005762,101
+PPA,reported,BF company,72,0.004670,102
+PPA,reported,BF company,84,0.002384,106
+PPA,reported,BF company,96,0.000766,107
+PPA,reported,BF company,108,0.000192,109
+PPA,reported,BF industry,12,0.057495,95
+PPA,reported,BF industry,24,0.029642,97
+PPA,reported,BF industry,36,0.017969,97
+PPA,reported,BF industry,48,0.009492,101
+PPA,reported,BF industry,60,0.006054,101
+PPA,reported,BF industry,72,0.004730,102
+PPA,reported,BF industry,84,0.002492,106
+PPA,reported,BF industry,96,0.000789,107
+PPA,reported,BF industry,108,0.000205,109
+PPA,reported,CL,12,0.041297,95
+PPA,reported,CL,24,0.023627,97
+PPA,reported,CL,36,0.015762,97
+PPA,reported,CL,48,0.009859,101
+PPA,reported,CL,60,0.005639,101
+PPA,reported,CL,72,0.004601,102
+PPA,reported,CL,84,0.002343,106
+PPA,reported,CL,96,0.000835,107
+PPA,reported,CL,108,0.000184,109
+PPA,reported,EC company,12,0.107897,95
+PPA,reported,EC company,24,0.104458,97
+PPA,reported,EC company,36,0.080688,97
+PPA,reported,EC company,48,0.107443,101
+PPA,reported,EC company,60,0.097276,101
+PPA,reported,EC company,72,0.097697,102
+PPA,reported,EC company,84,0.106327,106
+PPA,reported,EC company,96,0.108825,107
+PPA,reported,EC company,108,0.077816,109
+PPA,reported,EC industry,12,0.080839,95
+PPA,reported,EC industry,24,0.110566,97
+PPA,reported,EC industry,36,0.104236,97
+PPA,reported,EC industry,48,0.104953,101
+PPA,reported,EC industry,60,0.087600,101
+PPA,reported,EC industry,72,0.107201,102
+PPA,reported,EC industry,84,0.121374,106
+PPA,reported,EC industry,96,0.122124,107
+PPA,reported,EC industry,108,0.091228,109
+WC,paid,BF company,12,0.177960,45
+WC,paid,BF company,24,0.119635,47
+WC,paid,BF company,36,0.053499,50
+WC,paid,BF company,48,0.037260,51
+WC,paid,BF company,60,0.024820,51
+WC,paid,BF company,72,0.011632,51
+WC,paid,BF company,84,0.031900,53
+WC,paid,BF company,96,0.007525,58
+WC,paid,BF company,108,0.003396,59
+WC,paid,BF industry,12,0.130808,45
+WC,paid,BF industry,24,0.090855,47
+WC,paid,BF industry,36,0.061396,50
+WC,paid,BF industry,48,0.045746,51
+WC,paid,BF industry,60,0.024193,51
+WC,paid,BF industry,72,0.014157,51
+WC,paid,BF industry,84,0.035305,53
+WC,paid,BF industry,96,0.009715,58
+WC,paid,BF industry,108,0.002929,59
+WC,paid,CL,12,0.087128,45
+WC,paid,CL,24,0.067173,47
+WC,paid,CL,36,0.044734,50
+WC,paid,CL,48,0.021034,51
+WC,paid,CL,60,0.016700,51
+WC,paid,CL,72,0.012085,51
+WC,paid,CL,84,0.019523,53
+WC,paid,CL,96,0.009132,58
+WC,paid,CL,108,0.003426,59
+WC,paid,EC company,12,0.227091,45
+WC,paid,EC company,24,0.202367,47
+WC,paid,EC company,36,0.186463,50
+WC,paid,EC company,48,0.174386,51
+WC,paid,EC company,60,0.129429,51
+WC,paid,EC company,72,0.134161,51
+WC,paid,EC company,84,1.271449,53
+WC,paid,EC company,96,0.221438,58
+WC,paid,EC company,108,0.176698,59
+WC,paid,EC industry,12,0.181072,45
+WC,paid,EC industry,24,0.164550,47
+WC,paid,EC industry,36,0.227259,50
+WC,paid,EC industry,48,0.204657,51
+WC,paid,EC industry,60,0.142735,51
+WC,paid,EC industry,72,0.081037,51
+WC,paid,EC industry,84,1.010200,53
+WC,paid,EC industry,96,0.169945,58
+WC,paid,EC industry,108,0.180925,59
+WC,reported,BF company,12,0.114276,45
+WC,reported,BF company,24,0.070583,47
+WC,reported,BF company,36,0.046240,50
+WC,reported,BF company,48,0.036182,51
+WC,reported,BF company,60,0.017335,51
+WC,reported,BF company,72,0.018902,51
+WC,reported,BF company,84,0.024772,53
+WC,reported,BF company,96,0.004295,58
+WC,reported,BF company,108,0.003234,59
+WC,reported,BF industry,12,0.123256,45
+WC,reported,BF industry,24,0.080444,47
+WC,reported,BF industry,36,0.044580,50
+WC,reported,BF industry,48,0.039623,51
+WC,reported,BF industry,60,0.018673,51
+WC,reported,BF industry,72,0.016287,51
+WC,reported,BF industry,84,0.026613,53
+WC,reported,BF industry,96,0.004625,58
+WC,reported,BF industry,108,0.004106,59
+WC,reported,CL,12,0.078807,45
+WC,reported,CL,24,0.058898,47
+WC,reported,CL,36,0.032953,50
+WC,reported,CL,48,0.033128,51
+WC,reported,CL,60,0.017463,51
+WC,reported,CL,72,0.014728,51
+WC,reported,CL,84,0.030114,53
+WC,reported,CL,96,0.004814,58
+WC,reported,CL,108,0.003525,59
+WC,reported,EC company,12,0.250160,45
+WC,reported,EC company,24,0.201614,47
+WC,reported,EC company,36,0.229551,50
+WC,reported,EC company,48,0.195404,51
+WC,reported,EC company,60,0.145418,51
+WC,reported,EC company,72,0.156000,51
+WC,reported,EC company,84,1.377534,53
+WC,reported,EC company,96,0.219805,58
+WC,reported,EC company,108,0.198968,59
+WC,reported,EC industry,12,0.182816,45
+WC,reported,EC industry,24,0.168560,47
+WC,reported,EC industry,36,0.231105,50
+WC,reported,EC industry,48,0.223632,51
+WC,reported,EC industry,60,0.137493,51
+WC,reported,EC industry,72,0.086210,51
+WC,reported,EC industry,84,1.137739,53
+WC,reported,EC industry,96,0.183660,58
+WC,reported,EC industry,108,0.190153,59
