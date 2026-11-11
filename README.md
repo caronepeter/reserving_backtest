@@ -75,7 +75,25 @@ Headline comparison, common sample, AYs 1999–2007, chain ladder and BF on volu
 | WC paid | +4.5% (28.5%) | +0.7% (41.9%) | +19.9% (32.5%) | −35.3% (133.6%) | +26.5% (78.5%) |
 | WC reported | +5.0% (27.8%) | +2.7% (26.2%) | +11.7% (29.6%) | −40.9% (119.8%) | +27.1% (87.7%) |
 
-Findings, error drivers and intervals are in Phase 4.
+Findings, error drivers and intervals are in Phase 4 (below).
+
+## Phase 4: findings
+
+From the frozen Phase 3 estimates; nothing re-estimated. Notebook: [notebooks/06_phase4_evaluate.ipynb](notebooks/06_phase4_evaluate.ipynb). Common sample (PPA 109, WC 59 lines), AYs 1999–2007, chain ladder (CL) and BF on volume-weighted all-years factors. Error = estimate − actual; positive = over-reserved.
+
+1. **Chain ladder was as accurate as BF and far more accurate than expected claims.** Paired comparison per line (CL |error| − other |error|, % of reserve, median with 95% bootstrap interval, 10,000 resamples): vs expected claims, −43 to −89 points, every interval below 0; vs BF, −8.9 to +0.9 points, every interval contains 0 (a tie). Closest to a CL edge: WC paid vs BF with the company loss ratio, −8.9 points (−17.1, +0.0). Results: [docs/phase4_q1_paired.csv](docs/phase4_q1_paired.csv).
+2. **Error is concentrated in the youngest accident years.** Median |error| as % of earned premium falls with age for CL and BF; on WC paid, CL 8.7% at 12 months vs BF 13–18%, all within about 1 point by 72 months. Expected claims doesn't improve with age (its error ÷ EP = expected loss ratio − actual loss ratio). WC errors are 1.5–2× PPA's.
+   ![Error by maturity](docs/figures/q2_error_by_maturity.png)
+3. **BF and expected claims missed on WC because the AY 1998 loss ratio overstated later years.** The WC industry loss ratio at 120 months fell from 64% (AY 1998, the expected loss ratio) to 45–55% (AYs 2003–2007); PPA stayed within about 4 points. BF error = Z × CL error + (1 − Z) × expected claims error exactly (Z = 1/CDF); on WC paid with the industry loss ratio, the median BF error of +19.9% has a loss ratio term of +26.0% and a development term of +1.0%. With hindsight loss ratios, BF's median |error| on WC paid would have been 13.7% vs CL's 28.5%: BF's long-tail advantage is real but only as good as its loss ratio, and this project's is an unadjusted AY 1998 ratio (no rate-change or trend data). A company's own AY 1998 ratio is unbiased but noisy; the industry ratio was more accurate for BF on WC paid (paired +11.5 points, interval +6.3 to +20.1).
+   ![Loss ratio by accident year](docs/figures/q5_loss_ratio_by_ay.png)
+4. **Paid vs reported (short).** Median |error|, paid vs reported: PPA CL 18.8% vs 14.7%, BF 22.8% vs 12.8%; WC CL 28.5% vs 27.8%, BF 41.9% vs 26.2%. Reported unpaid includes case still open at 120 months (median 15.1% of reported unpaid for WC, 0.5% for PPA), so the WC comparison is approximate.
+5. **Averaging methods (short, in-sample).** Latest-3 averages rank first on PPA (paid 15.4% vs 18.8% for the headline average; reported 8.8% vs 14.7%); on WC the six are within about 4 points. Only the headline average was chosen in advance, so the winners' edge is likely overstated.
+
+**Limitations.**
+- *Survivorship:* only companies that filed through 2007 can be graded; exits and failures likely had less stable development, so errors are likely a lower bound, and CL, which leans most on each company's own history, likely gains most.
+- *Premium recorded far too low:* 25 company-AYs (22 of 54 WC lines in AY 2001) have earned premium a few percent of the line's other years with normal losses. Rule 2 caught premium = 0 but not near-zero premium; known data would have shown it before the freeze. Frozen results are kept; removing those AYs moves CL and BF by 1 point or less and makes expected claims worse ([docs/phase4_premium_sensitivity.csv](docs/phase4_premium_sensitivity.csv)).
+- *Reinsurance changes:* lines whose ceded share of premium swung by more than 0.5 are kept; Schedule P doesn't record treaty type, so this is a named confounder only. On WC these lines were under-reserved by CL at the median, the opposite of the excess-of-loss mechanism (21 lines; observation, not finding).
+- *No claim counts, rate changes or trend:* settlement speed vs case strength can't be separated, and the expected loss ratio can't be adjusted.
 
 ## Target definition
 
@@ -90,7 +108,7 @@ Findings, error drivers and intervals are in Phase 4.
   error = (estimated unpaid − actual unpaid) / actual unpaid.
   It is also reported as a percentage of earned premium. AY 1998 is excluded from the reserve error because its reserve is zero by construction.
 - **Summary statistics:** medians and IQRs across companies. Bias (median signed error) is reported separately from accuracy (median absolute error).
-- **Known limitation:** selecting the best averaging method and scoring it on the same data is an in-sample comparison. TODO: either say so in the results or fix it with the second-era (1988–1997) extension.
+- **Known limitation:** selecting the best averaging method and scoring it on the same data is an in-sample comparison; stated with the Phase 4 results. The second-era (1988–1997) extension would fix it.
 
 ## Scope
 
@@ -104,7 +122,8 @@ Findings, error drivers and intervals are in Phase 4.
 data/raw/        CAS download, unmodified
 data/clean/      output of src/clean.py (not committed; rebuild by running it)
 docs/            cleaning rules, cleaning counts, dropped lines, data dictionary;
-                 Phase 3 summary results and open case at 120 by line
+                 Phase 3 summary results and open case at 120 by line;
+                 Phase 4 result tables (phase4_*.csv) and figures/
 data/hidden/     Phase 2 answer key (not committed)
 results/         Phase 3 estimates and graded tables (not committed; rebuild with src/backtest.py
                  and notebooks/05_phase3_grade)
@@ -114,7 +133,8 @@ src/             clean.py (cleaning rules); methods.py (triangles, factors, aver
                  backtest.py (Phase 3: loss ratios, all lines x 40 combinations, checks)
 notebooks/       01_data_checks (probes behind each rule), 02_clean (applies the rules),
                  03_one_company (pick, export, Python-to-Excel reconciliation), 04_phase2_reveal (grading),
-                 05_phase3_grade (grades every estimate, summary table)
+                 05_phase3_grade (grades every estimate, summary table),
+                 06_phase4_evaluate (the five questions, error drivers, data check)
 tests/           test_methods.py: Friedland ch. 7 Exhibit I (factors, averages, CDFs, chain ladder);
                  test_backtest.py: Phase 3 batch (23663 regression, zero denominators, latest n, incomplete lines)
 ```
