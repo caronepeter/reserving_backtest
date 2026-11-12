@@ -1,6 +1,8 @@
 # Reserving Backtest: How Accurate Are Basic Reserving Methods on Real Insurers?
 
-> Status: Phase 1 (data) and Phase 2 (one company by hand) complete. Phase 3 (all companies) next. The question, target and scoring rules below were set **before** any estimates were made, so the design can't be tuned to the results.
+> Status: complete. Analysis frozen after Phase 4 (2026-11-10); nothing further is in progress. Possible extensions are listed under [Scope](#scope). The question, target and scoring rules below were set **before** any estimates were made, so the design can't be tuned to the results.
+
+<!-- Headline findings: three findings in my own words go here. -->
 
 ## Research question
 
@@ -115,6 +117,20 @@ From the frozen Phase 3 estimates; nothing re-estimated. Notebook: [notebooks/06
 **In scope:** paid/reported chain ladder, expected claims, BF; 6 averaging methods (simple and volume-weighted × all years, latest 5, latest 3; Friedland ch. 7); 2 expected loss ratio options (company AY 1998 at 120 months; premium-weighted industry); PPA and WC; 120-month target.
 
 **Out of scope:** tail factors, Mack/bootstrap, Berquist-Sherman, frequency-severity methods, case outstanding development. The data has no claim counts, so a shift in the paid-to-reported ratio can't be attributed to faster settlement vs. weakening case reserves.
+
+**Not done (possible extensions):** a second era (AY 1988–1997) to choose the averaging method out of sample; Cape Cod; a chainladder-python cross-check of the batch; sensitivity runs without high reinsurance-swing lines and on complete lines only.
+
+## Reproduce
+
+Python 3 with pandas, numpy, matplotlib, openpyxl and pytest. Run from the repo root, in order:
+
+1. `notebooks/02_clean.ipynb`: applies the cleaning rules, writes `data/clean/`
+2. `python3 src/backtest.py`: builds the 62,320 estimates in `results/estimates.csv` (known cells only)
+3. `notebooks/05_phase3_grade.ipynb`: checks the freeze hash, grades every estimate, writes `results/graded_*.csv` and `docs/phase3_summary.csv`
+4. `notebooks/06_phase4_evaluate.ipynb`: the Phase 4 tables and figures
+5. `pytest tests/`
+
+`data/clean/` and `results/` are not committed; steps 1–3 rebuild them from `data/raw/`.
 
 ## Repository layout
 
