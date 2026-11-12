@@ -2,7 +2,11 @@
 
 > Status: complete. Analysis frozen after Phase 4 (2026-11-10); nothing further is in progress. Possible extensions are listed under [Scope](#scope). The question, target and scoring rules below were set **before** any estimates were made, so the design can't be tuned to the results.
 
-<!-- Headline findings: three findings in my own words go here. -->
+## Findings
+
+1. Chain ladder estimates statistically tied Bornhuetter-Ferguson when compared using bootstrap intervals, and both chain ladder and BF beat the expected claims method.
+2. For both chain ladder and BF, error shrinks as an accident year ages, which is consistent with the mechanics of both techniques: chain ladder applies a large cumulative development factor to immature losses, amplifying their noise, and BF places more weight on the expected loss ratio until losses emerge. Expected claims, which ignores emerged losses, does not improve with age.
+3. BF and expected claims missed on workers' comp because the AY 1998 loss ratio, the only AY with losses known at 10 years of development, was too high for AYs 2003–2007 (industry paid loss ratio 64% vs 45–55%). With the industry ELR, this led to over-reserved estimates. With hindsight loss ratios, BF would have beaten chain ladder on workers' comp paid (median error 13.7% vs 28.5%), so BF's expected advantage in long-tail lines depends on ELR selection. Friedland adjusts the ELR for rate changes and trend; the data in this study didn't allow for this.
 
 ## Research question
 
